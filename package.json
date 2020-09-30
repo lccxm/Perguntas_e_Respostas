@@ -1,0 +1,23 @@
+{
+  "name": "perguntas_e_respostas",
+  "version": "1.0.0",
+  "description": "app de perguntas e respostas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lccxm/Perguntas_e_Respostas.git"
+  },
+  "author": "Lucca Molon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lccxm/Perguntas_e_Respostas/issues"
+  },
+  "homepage": "https://github.com/lccxm/Perguntas_e_Respostas#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1"
+  }
+}
