@@ -1,9 +1,12 @@
 const express = require("express");
 const app = express();
+const bodyParser = require("body-parser");
 
 app.set('view engine','ejs'); //setando a view engine pro ejs
 app.use(express.static('public'));  //programa aceita arquivos estaticos no diretorio public
 
+app.use(bodyParser.urlencoded({extended: false})); //permite a traducao de dados em estrutura javascript
+app.use(bodyParser.json()); //permite leitura de dados json
 
 app.get("/",(req,res)=>{
     res.render("index");
@@ -12,6 +15,13 @@ app.get("/",(req,res)=>{
 app.get("/perguntar",(req,res)=>{
     res.render("perguntar");
 });
+
+app.post("/savequestion",(req,res)=>{
+    var titulo = req.body.titulo;
+    var descricao = req.body.descricao;
+    res.send(titulo + descricao);
+
+})
 
 app.listen(8080,()=>{
     console.log("rodando");
