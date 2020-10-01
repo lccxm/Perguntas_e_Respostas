@@ -1,8 +1,26 @@
 <%- include("./partials/header.ejs") %>
 <title>Index</title>
 <body>
-        <%- include("./partials/navbar.ejs") %>
-    <h1>Perguntasssssss</h1>
+    <%- include("./partials/navbar.ejs") %>
+    
+    <div class="container">
+        <hr>
+        <h1>Perguntas</h1>
+        <hr>
+        <a href="/perguntar" class="btn btn-info">Perguntar</a>
+        <br>
+        <% questions.forEach(question => { %>
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <h3><%= question.title %></h3>
+                </div>
+                <div class="card-footer">
+                    <a href="/pergunta/<%= question.id %>"><button class="btn btn-info">Responder</button></a>
+                </div>
+            </div>
+        <%  }) %>
+    </div>
 
 </body>
 <%- include("./partials/footer.ejs") %>

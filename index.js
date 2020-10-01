@@ -22,7 +22,13 @@ app.use(bodyParser.urlencoded({extended: false})); //permite a traducao de dados
 app.use(bodyParser.json()); //permite leitura de dados json
 
 app.get("/",(req,res)=>{
-    res.render("index");
+    questionModel.findAll({raw: true, order:[
+        ['id', 'DESC']   //mostra as perguntas por id decrescente (da mais recente a mais antiga)
+    ]}).then(questions => {
+        res.render("index",{
+            questions: questions
+        });
+    })
 });
 
 app.get("/perguntar",(req,res)=>{
@@ -39,6 +45,21 @@ app.post("/savequestion",(req,res)=>{
         res.redirect("/");
     })
 
+})
+
+app.get("/pergunta/:id",(req,res)=>{
+    var id = req.params.id;
+    questionModel.findOne({
+        where: {id: id}
+    }).then(question => {
+        if(question != undefined){
+            res.render("pergunta",{
+                question: question
+            })
+        }else{
+            res.redirect("/")
+        }
+    })
 })
 
 app.listen(8080,()=>{
