@@ -1,6 +1,19 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const connection = require("./database/database");
+
+
+
+//database
+connection
+    .authenticate()
+    .then(()=>{
+        console.log("deu bom");
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
 
 app.set('view engine','ejs'); //setando a view engine pro ejs
 app.use(express.static('public'));  //programa aceita arquivos estaticos no diretorio public
@@ -19,7 +32,7 @@ app.get("/perguntar",(req,res)=>{
 app.post("/savequestion",(req,res)=>{
     var titulo = req.body.titulo;
     var descricao = req.body.descricao;
-    res.send(titulo + descricao);
+    res.send(titulo + " " + descricao);
 
 })
 
