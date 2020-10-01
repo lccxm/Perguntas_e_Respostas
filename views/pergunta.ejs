@@ -8,6 +8,24 @@
         <h1><%= question.title %></h1>
         <p><%= question.description %></p>
         <hr>
+        <form method="POST" action="/responder">
+            <h3>Responda</h3>
+            <textarea placeholder="Digite sua resposta" class="form-control" name="body"></textarea>
+            <input type="hidden" name="question" value="<%= question.id %>">
+            <br>
+            <button type="submit" class="btn btn-info">Responder</button>
+        </form>
+        <hr>
+        <h3>Respostas</h3>
+        <hr>
+        <% answers.forEach(answer=>{ %>
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <p><%= answer.body %></p>
+                </div>
+            </div>
+       <% }) %>
     </div>
 
 </body>
